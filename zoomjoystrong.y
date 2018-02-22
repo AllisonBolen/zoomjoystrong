@@ -34,7 +34,9 @@
 %%
 zoomjoystrong: point  |	line  |	circle	| rectangle | set_color ;
 
-point:	POINT SEPARATOR INT INT
+point:	POINT SEPARATOR INT SEPERATOR INT END_STATEMENT
+        {printf("\n---------\n");}
+        ;
 
 
 %%
