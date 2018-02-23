@@ -37,7 +37,18 @@ zoomjoystrong: point  |	line  |	circle	| rectangle | set_color ;
 point:	POINT SEPARATOR INT SEPERATOR INT END_STATEMENT
         {printf("\n---------\n");}
         ;
-
+line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
+	{printf("\n---------\n");}
+	;
+circle:	CIRCLE SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
+	{printf("\n----------\n");}
+	;
+rectangle:  RECTANGLE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
+	{printf("\n----------\n");}
+	;
+set_color:  SET_COLOR SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
+	{printf("\n----------\n");}
+	;
 
 %%
 
