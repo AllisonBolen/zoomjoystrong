@@ -1,5 +1,5 @@
 %{
-    #include "zoomjoystrong.h"
+    #include "zoomjoystrong.tab.h"
     #include <stdlib.h>
 %}
 
@@ -7,9 +7,8 @@
 
 %%
 
-
-(END)	  { return END }
-;	  { return END_STATEMENT }
+(END)	  { return END; }
+;	  { return END_STATEMENT; }
 (point)  { yylval.str = strdup(yytext); return POINT; }
 (line)	{ yylval.str = strdup(yytext); return LINE; }
 (circle)  { yylval.str = strdup(yytext); return CIRCLE; }
@@ -19,6 +18,5 @@
 -?[0-9]+\.[0-9]+ {yylval.f = atof(yytext); return FLOAT; }
 ,	  { return SEPARATOR; }
 [ \t\n]	  ;
-
 
 %%
