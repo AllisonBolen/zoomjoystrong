@@ -5,6 +5,7 @@
     int yylex();
     void lineDraw(int x, int y, int a, int b);
     void pointDraw(int x, int y);
+    void circleDraw(int x, int y, int a, int b);
 %}
 
 %error-verbose
@@ -49,7 +50,7 @@ line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("%s %d %d %d %d;\n", $1, $3, $5, $7, $9); lineDraw($3, $5, $7, $9);}
 	;
 circle:	CIRCLE SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("\n----------\n");}
+	{printf("%s %d %d %d;\n", $1, $3, $5, $7); circleDraw($3, $5, $7);}
 	;
 rectangle:  RECTANGLE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("\n----------\n");}
@@ -85,5 +86,10 @@ void pointDraw(int x, int y){
 
 void lineDraw(int x, int y, int a, int b){
   line(x,y,a,b);
+  return;
+}
+
+void circleDraw(int x, int y, int r){
+  circle(x,y,r);
   return;
 }
