@@ -1,4 +1,5 @@
 %{
+    #include "zoomjoystrong.h"
     #include <stdio.h>
     void yyerror(const char* msg);
     int yylex();
@@ -57,8 +58,10 @@ end: END END_STATEMENT
 
 int main(int argc, char** argv){
   printf("\n==========\n");
+  setup();
   yyparse();
   printf("\n\n=========\nZoomJoyStrong running good");
+  
   return 0;
 }
 
