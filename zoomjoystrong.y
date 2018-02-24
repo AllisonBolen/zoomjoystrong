@@ -36,7 +36,7 @@
 zoomjoystrong: point  |	line  |	circle	| rectangle | set_color | end;
 
 point:	POINT SEPARATOR INT SEPARATOR INT END_STATEMENT
-        {printf("%s %d %d;", $1, $3, $5);}
+        {printf("%s %d %d;\n", $1, $3, $5); pointDraw($3,$5);}
         ;
 line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("\n---------\n");}
@@ -56,11 +56,16 @@ end: END END_STATEMENT
 
 %%
 
+void pointDraw(int x, int y){
+ printf("HHEHHEHEHHEHEHEHHEHEHHEHHEHEHHEHEH");
+ point(x , y);
+}
+
 int main(int argc, char** argv){
   printf("\n==========\n");
-  setup();
+ // setup();
   yyparse();
-  printf("\n\n=========\nZoomJoyStrong running good");
+  printf("\n\n=========\nZoomJoyStrong running good\n");
   
   return 0;
 }
@@ -68,3 +73,4 @@ int main(int argc, char** argv){
 void yyerror(const char* msg){
   fprintf(stderr, "ERROR! %s\n", msg);
 }
+
