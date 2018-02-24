@@ -32,10 +32,10 @@
 %type<f> FLOAT
 
 %%
-zoomjoystrong: point  |	line  |	circle	| rectangle | set_color ;
+zoomjoystrong: point  |	line  |	circle	| rectangle | set_color | end;
 
 point:	POINT SEPARATOR INT SEPARATOR INT END_STATEMENT
-        {printf("\n---------\n");}
+        {printf("%s %d %d;", $1, $3, $5);}
         ;
 line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("\n---------\n");}
@@ -49,6 +49,9 @@ rectangle:  RECTANGLE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT EN
 set_color:  SET_COLOR SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("\n----------\n");}
 	;
+end: END END_STATEMENT
+	{return 0;}
+	; 
 
 %%
 
