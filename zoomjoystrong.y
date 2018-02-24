@@ -6,6 +6,7 @@
     void lineDraw(int x, int y, int a, int b);
     void pointDraw(int x, int y);
     void circleDraw(int x, int y, int r);
+    void set_colorDraw(int r, int b, int g);
     void rectangleDraw(int x, int y, int w, int h);
 %}
 
@@ -57,7 +58,7 @@ rectangle:  RECTANGLE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT EN
 	{printf("%s %d %d %d %d;\n", $1, $3, $5, $7, $9); rectangleDraw($3, $5, $7, $9);}
 	;
 set_color:  SET_COLOR SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("\n----------\n");}
+	{printf("%s %d %d %d;\n", $1, $3, $5, $7); set_colorDraw($3, $5, $7);}
 	;
 end: END END_STATEMENT
 	{return 0;}
@@ -97,5 +98,10 @@ void circleDraw(int x, int y, int r){
 
 void rectangleDraw(int x, int y, int w, int h){
   rectangle(x,y,w,h);
+  return;
+}
+
+void set_colorDraw(int r, int b, int g){
+  set_color(r,b,g);
   return;
 }
