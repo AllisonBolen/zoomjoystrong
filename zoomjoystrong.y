@@ -57,13 +57,14 @@ end: END END_STATEMENT
 %%
 
 void pointDraw(int x, int y){
- printf("HHEHHEHEHHEHEHEHHEHEHHEHHEHEHHEHEH");
+// printf("HHEHHEHEHHEHEHEHHEHEHHEHHEHEHHEHEH");
  point(x , y);
+ return;
 }
 
 int main(int argc, char** argv){
   printf("\n==========\n");
- // setup();
+  setup();
   yyparse();
   printf("\n\n=========\nZoomJoyStrong running good\n");
   
