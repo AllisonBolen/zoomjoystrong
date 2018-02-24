@@ -5,7 +5,7 @@
     int yylex();
     void lineDraw(int x, int y, int a, int b);
     void pointDraw(int x, int y);
-    void circleDraw(int x, int y, int a, int b);
+    void circleDraw(int x, int y, int r);
 %}
 
 %error-verbose
