@@ -7,7 +7,7 @@
 
 %%
 
-(END)	  { return END; }
+(end)	  { yylval.str = strdup(yytext); return END; }
 ;	  { return END_STATEMENT; }
 (point)  { yylval.str = strdup(yytext); return POINT; }
 (line)	{ yylval.str = strdup(yytext); return LINE; }
