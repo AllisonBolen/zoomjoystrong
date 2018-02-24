@@ -39,7 +39,7 @@ point:	POINT SEPARATOR INT SEPARATOR INT END_STATEMENT
         {printf("%s %d %d;\n", $1, $3, $5); pointDraw($3,$5);}
         ;
 line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("\n---------\n");}
+	{printf("%s %d %d %d %d;\n", $1, $3, $5, $7, $9); lineDraw($3, $5, $7, $9);}
 	;
 circle:	CIRCLE SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("\n----------\n");}
@@ -62,9 +62,14 @@ void pointDraw(int x, int y){
  return;
 }
 
+void lineDraw(int x, int y, int a, int b){
+  line(x,y,a,b);
+  return;
+}
+
 int main(int argc, char** argv){
   printf("\n==========\n");
-  setup();
+  //setup();
   yyparse();
   printf("\n\n=========\nZoomJoyStrong running good\n");
   
