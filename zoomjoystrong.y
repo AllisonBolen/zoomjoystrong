@@ -33,11 +33,16 @@
 %type<f> FLOAT
 
 %%
-zoomjoystrong: point  |	line  |	circle	| rectangle | set_color | end;
+
+zoomjoystrong:zjs_list end;
+
+zjs_list: zjs_statement | zjs_statement zjs_list;
+
+zjs_statement: point  |	line  |	circle	| rectangle | set_color | end;
 
 point:	POINT SEPARATOR INT SEPARATOR INT END_STATEMENT
-        {printf("%s %d %d;\n", $1, $3, $5); pointDraw($3,$5);}
-        ;
+        {printf("%s %d %d;\n", $1, $3, $5); point($3,$5);}  
+	;
 line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("%s %d %d %d %d;\n", $1, $3, $5, $7, $9); lineDraw($3, $5, $7, $9);}
 	;
@@ -69,7 +74,7 @@ void lineDraw(int x, int y, int a, int b){
 
 int main(int argc, char** argv){
   printf("\n==========\n");
-  //setup();
+  setup();
   yyparse();
   printf("\n\n=========\nZoomJoyStrong running good\n");
   
