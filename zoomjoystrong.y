@@ -96,6 +96,6 @@ void circleDraw(int x, int y, int r){
 }
 
 void rectangleDraw(int x, int y, int w, int h){
-  rectanble(x,y,w,h);
+  rectangle(x,y,w,h);
   return;
 }
