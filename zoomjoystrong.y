@@ -61,7 +61,8 @@ set_color:  SET_COLOR SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	{printf("%s %d %d %d;\n", $1, $3, $5, $7); set_colorDraw($3, $5, $7);}
 	;
 end: END END_STATEMENT
-	{return 0;}
+	{finish(); 
+         return 0;}
 	; 
 
 %%
@@ -81,27 +82,36 @@ void yyerror(const char* msg){
 }
 
 void pointDraw(int x, int y){
-// printf("HHEHHEHEHHEHEHEHHEHEHHEHHEHEHHEHEH");
- point(x , y);
- return;
-}
-
-void lineDraw(int x, int y, int a, int b){
-  line(x,y,a,b);
+  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH){
+   point(x , y);
+  }
   return;
 }
 
+void lineDraw(int x, int y, int a, int b){
+  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH && a < HIEGHT && a > 0 && a < WIDTH && b < HIEGHT && b > 0 && b < WIDTH){
+   line(x,y,a,b);
+  } 
+ return;
+}
+
 void circleDraw(int x, int y, int r){
-  circle(x,y,r);
+  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH && r < HIEGHT && r > 0 && r < WIDTH){
+   circle(x,y,r);
+  }
   return;
 }
 
 void rectangleDraw(int x, int y, int w, int h){
-  rectangle(x,y,w,h);
+  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH && h < HIEGHT && h > 0 && h < WIDTH && w < HIEGHT && w > 0 && w < WIDTH){
+   rectangle(x,y,w,h);
+  }
   return;
 }
 
 void set_colorDraw(int r, int b, int g){
-  set_color(r,b,g);
+  if(r < 256 && r > -1 && b < 256 && b > -1 && g < 256 && g > -1){
+    set_color(r,b,g);
+  }
   return;
 }

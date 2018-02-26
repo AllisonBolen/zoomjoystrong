@@ -18,5 +18,6 @@
 -?[0-9]+\.[0-9]+ {yylval.f = atof(yytext); return FLOAT; }
 [ ] 	  { return SEPARATOR; }
 [\t\n]	  ;
+^(?:(?!point|circle|rectangle|line|set_color|[0-9]+|-?[0-9]+\.[0-9]+|;|end|[ ]).)+$  ; 
 
 %%
