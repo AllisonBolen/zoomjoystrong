@@ -1,8 +1,8 @@
 %{
     #include "zoomjoystrong.h"
-    #include <stdio.h>
-    void yyerror(const char* msg);
+    #include <stdio.h> 
     int yylex();
+    void yyerror(const char* msg);
     void lineDraw(int x, int y, int a, int b);
     void pointDraw(int x, int y);
     void circleDraw(int x, int y, int r);
@@ -73,45 +73,54 @@ int main(int argc, char** argv){
   setup();
   yyparse();
   printf("\n\n=========\nZoomJoyStrong running good\n");
-  
   return 0;
 }
 
 void yyerror(const char* msg){
   fprintf(stderr, "ERROR! %s\n", msg);
+  return;  
 }
 
 void pointDraw(int x, int y){
-  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH){
+  if(x < HEIGHT && x > 0 && x < WIDTH && y < HEIGHT && y > 0 && y < WIDTH){
    point(x , y);
   }
-  return;
+  else{
+    printf("\nCan not draw this Point; the Point is not inside the window.\n");
+  }
 }
 
 void lineDraw(int x, int y, int a, int b){
-  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH && a < HIEGHT && a > 0 && a < WIDTH && b < HIEGHT && b > 0 && b < WIDTH){
+  if(x < HEIGHT && x > 0 && x < WIDTH && y < HEIGHT && y > 0 && y < WIDTH && a < HEIGHT && a > 0 && a < WIDTH && b < HEIGHT && b > 0 && b < WIDTH){
    line(x,y,a,b);
-  } 
- return;
+  }
+  else{
+    printf("\nCan not draw this Line; the Line is not inside the window.\n");
+  }
 }
 
 void circleDraw(int x, int y, int r){
-  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH && r < HIEGHT && r > 0 && r < WIDTH){
+  if(x < HEIGHT && x > 0 && x < WIDTH && y < HEIGHT && y > 0 && y < WIDTH && r < HEIGHT && r > 0 && r < WIDTH){
    circle(x,y,r);
   }
-  return;
+  else{
+    printf("\nCan not draw this Circle; the Circle is not inside the window.\n");
+  }
+
 }
 
 void rectangleDraw(int x, int y, int w, int h){
-  if(x < HIEGHT && x > 0 && x < WIDTH && y < HIEGHT && y > 0 && y < WIDTH && h < HIEGHT && h > 0 && h < WIDTH && w < HIEGHT && w > 0 && w < WIDTH){
+  if(x < HEIGHT && x > 0 && x < WIDTH && y < HEIGHT && y > 0 && y < WIDTH && h < HEIGHT && h > 0 && h < WIDTH && w < HEIGHT && w > 0 && w < WIDTH){
    rectangle(x,y,w,h);
   }
-  return;
+  else{
+    printf("\nCan not draw this Rectangle; the Rectangle is not inside the window.\n");
+  }
+
 }
 
 void set_colorDraw(int r, int b, int g){
   if(r < 256 && r > -1 && b < 256 && b > -1 && g < 256 && g > -1){
     set_color(r,b,g);
   }
-  return;
 }
