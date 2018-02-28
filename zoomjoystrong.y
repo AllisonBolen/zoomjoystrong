@@ -62,7 +62,7 @@ set_color:  SET_COLOR SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
 	;
 end: END END_STATEMENT
 	{finish(); 
-         return 0;}
+        return 0;}
 	; 
 
 %%
@@ -78,7 +78,7 @@ int main(int argc, char** argv){
 
 void yyerror(const char* msg){
   fprintf(stderr, "ERROR! %s\n", msg);
-  return;  
+   
 }
 
 void pointDraw(int x, int y){
@@ -100,8 +100,8 @@ void lineDraw(int x, int y, int a, int b){
 }
 
 void circleDraw(int x, int y, int r){
-  if(x < HEIGHT && x > 0 && x < WIDTH && y < HEIGHT && y > 0 && y < WIDTH && r < HEIGHT && r > 0 && r < WIDTH){
-   circle(x,y,r);
+  if(WIDTH-x >= r && x>=r && y>=r && HEIGHT-y >= r  && r > 0){ 
+    circle(x,y,r);
   }
   else{
     printf("\nCan not draw this Circle; the Circle is not inside the window.\n");
@@ -110,8 +110,8 @@ void circleDraw(int x, int y, int r){
 }
 
 void rectangleDraw(int x, int y, int w, int h){
-  if(x < HEIGHT && x > 0 && x < WIDTH && y < HEIGHT && y > 0 && y < WIDTH && h < HEIGHT && h > 0 && h < WIDTH && w < HEIGHT && w > 0 && w < WIDTH){
-   rectangle(x,y,w,h);
+  if(x+w <= WIDTH && x+w > -1 && y+h <= HEIGHT && y+h > -1){ 
+    rectangle(x,y,w,h);
   }
   else{
     printf("\nCan not draw this Rectangle; the Rectangle is not inside the window.\n");
