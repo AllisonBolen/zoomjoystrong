@@ -50,7 +50,7 @@ zjs_statement:  point
 	|	circle	
 	|	rectangle 
 	|	set_color
-	;
+;
 
 point:	POINT INT INT END_STATEMENT
         {printf("%s %d %d;\n", $1, $2, $3); pointDraw($2,$3);}  
