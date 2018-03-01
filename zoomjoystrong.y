@@ -134,4 +134,7 @@ void set_colorDraw(int r, int b, int g){
   if(r < 256 && r > -1 && b < 256 && b > -1 && g < 256 && g > -1){
     set_color(r,b,g);
   }
+  else{
+    printf("\nYour color number is invalid.\n");
+  }
 }
