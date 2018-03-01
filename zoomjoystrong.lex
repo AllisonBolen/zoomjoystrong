@@ -16,7 +16,6 @@
 (set_color) {yylval.str = strdup(yytext); return SET_COLOR; }
 [0-9]+	  { yylval.i = atoi(yytext); return INT; }
 -?[0-9]+\.[0-9]+ {yylval.f = atof(yytext); return FLOAT; }
-[ ]       { return SEPARATOR; }
-[\t\n]	  ;
+[ \t\n]	  ;
 .  ; 
 %%

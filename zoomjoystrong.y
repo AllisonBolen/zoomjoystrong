@@ -24,7 +24,6 @@
 %token SET_COLOR
 %token INT
 %token FLOAT
-%token SEPARATOR
 
 
 %type<str> END
@@ -39,40 +38,52 @@
 
 %%
 
-zoomjoystrong:zjs_list end;
+zoomjoystrong:	zjs_list end
+;
 
-zjs_list: zjs_statement | zjs_statement zjs_list;
+zjs_list: zjs_statement 
+	| zjs_statement zjs_list 
+;
 
-zjs_statement: point  |	line  |	circle	| rectangle | set_color | end;
+zjs_statement:  point  
+	|	line  
+	|	circle	
+	|	rectangle 
+	|	set_color
+	;
 
-point:	POINT SEPARATOR INT SEPARATOR INT END_STATEMENT
-        {printf("%s %d %d;\n", $1, $3, $5); pointDraw($3,$5);}  
-	;
-line:	LINE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("%s %d %d %d %d;\n", $1, $3, $5, $7, $9); lineDraw($3, $5, $7, $9);}
-	;
-circle:	CIRCLE SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("%s %d %d %d;\n", $1, $3, $5, $7); circleDraw($3, $5, $7);}
-	;
-rectangle:  RECTANGLE SEPARATOR INT SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("%s %d %d %d %d;\n", $1, $3, $5, $7, $9); rectangleDraw($3, $5, $7, $9);}
-	;
-set_color:  SET_COLOR SEPARATOR INT SEPARATOR INT SEPARATOR INT END_STATEMENT
-	{printf("%s %d %d %d;\n", $1, $3, $5, $7); set_colorDraw($3, $5, $7);}
-	;
+point:	POINT INT INT END_STATEMENT
+        {printf("%s %d %d;\n", $1, $2, $3); pointDraw($2,$3);}  
+;
+
+line:	LINE INT INT INT INT END_STATEMENT
+	{printf("%s %d %d %d %d;\n", $1, $2, $3, $4, $5); lineDraw($2, $3, $4, $5);}
+;
+
+circle:	CIRCLE INT INT INT END_STATEMENT
+	{printf("%s %d %d %d;\n", $1, $2, $3, $4); circleDraw($2, $3, $4);}
+;
+
+rectangle:  RECTANGLE INT INT INT INT END_STATEMENT
+	{printf("%s %d %d %d %d;\n", $1, $2, $3, $4, $5); rectangleDraw($2, $3, $4, $5);}
+;
+
+set_color:  SET_COLOR INT INT INT END_STATEMENT
+	{printf("%s %d %d %d;\n", $1, $2, $3, $4); set_colorDraw($2, $3, $4);}
+;
+
 end: END END_STATEMENT
-	{finish(); 
-        return 0;}
-	; 
+	{printf("%s;\n", $1); finish(); return 0;}
+; 
 
 %%
 
 
 int main(int argc, char** argv){
-  printf("\n==========\n");
+  printf("\nZoomJoyStrong Commands:\npoint # #;\nline # # # #;\ncircle # # #;\nrectangle # # # #;\nset_color # # #;\nend;\n\n");
   setup();
   yyparse();
-  printf("\n\n=========\nZoomJoyStrong running good\n");
+  printf("\n\nThanks for useing ZoomJoyStrong!\n\n");
   return 0;
 }
 
