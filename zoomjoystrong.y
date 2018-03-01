@@ -83,7 +83,7 @@ int main(int argc, char** argv){
   printf("\nZoomJoyStrong Commands:\npoint # #;\nline # # # #;\ncircle # # #;\nrectangle # # # #;\nset_color # # #;\nend;\n\n");
   setup();
   yyparse();
-  printf("\n\nThanks for useing ZoomJoyStrong!\n\n");
+  printf("\n\nThanks for using ZoomJoyStrong!\n\n");
   return 0;
 }
 
